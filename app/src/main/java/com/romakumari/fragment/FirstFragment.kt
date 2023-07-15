@@ -13,26 +13,37 @@ import android.widget.Toast
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-lateinit var tvText: TextView
-lateinit var itemView: View
+
 
 /**
  * A simple [Fragment] subclass.
  * Use the [FirstFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(), ActivityInterface {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var tvText: TextView
+    lateinit var itemView: View
+    lateinit var  mainactivity: MainActivity
+    //lateinit var mainactivity:ActivityInterface
+    //lateinit var binding: FragmentFirstBinding
+    lateinit var changetext: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+       // binding= activityInterface.in
         super.onCreate(savedInstanceState)
+        mainactivity=activity as MainActivity
+
+        mainactivity.activityinterface=this
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +52,17 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         itemView = inflater.inflate(R.layout.fragment_first, container, false)
         tvText = itemView.findViewById(R.id.tvText)
+        changetext=itemView.findViewById(R.id.changetext)
+        changetext.setOnClickListener {
+            mainactivity.changeText()
+        }
         return itemView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvText = view.findViewById(R.id.tvText)
+
 
     }
 
@@ -91,4 +107,11 @@ class FirstFragment : Fragment() {
 
                 }
             }
-    }}
+    }
+
+    override fun changeFragmentText() {
+        System.out.println("in function change fragment text")
+        changetext.setText(" change from text")
+
+    }
+}

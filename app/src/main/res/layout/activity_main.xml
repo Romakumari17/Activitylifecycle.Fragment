@@ -4,12 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#81DDE8EA"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:textSize="50sp"
+        android:id="@+id/tvhello"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button"
+        android:id="@+id/btnbutton"/>
 <androidx.fragment.app.FragmentContainerView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/fragment"
+    android:layout_margin="50sp"
     android:name="com.romakumari.fragment.FirstFragment"/>
 
 </LinearLayout>
